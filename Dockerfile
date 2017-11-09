@@ -10,7 +10,7 @@ RUN apt-get -qq update           &&  \
     rm -rf /var/lib/apt/lists/*
 
 # Miniconda.
-RUN wget --quiet https://repo.continuum.io/miniconda/Miniconda3-4.3.30-Linux-x86_64.sh -O ~/miniconda.sh && \
+RUN wget --quiet https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
     /bin/bash ~/miniconda.sh -b -p /opt/conda && \
     rm ~/miniconda.sh
 # https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
@@ -19,7 +19,7 @@ RUN wget --quiet https://repo.continuum.io/miniconda/Miniconda3-4.3.30-Linux-x86
 WORKDIR /ne
 COPY requirements.txt .
 RUN /opt/conda/bin/conda install -q -y conda numpy scipy pip pillow
-RUN /opt/conda/bin/python3.5 -m pip install -q -r "requirements.txt"
+RUN /opt/conda/bin/python3.6 -m pip install -q -r "requirements.txt"
 
 # Copy only required project files
 COPY enhance.py .
