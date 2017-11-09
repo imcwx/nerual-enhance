@@ -28,11 +28,17 @@ COPY test/* test/
 RUN mkdir test_small
 COPY test_small/* test_small/ 
 
+
 # Get a pre-trained neural networks, non-commercial & attribution.
-RUN wget -q "https://github.com/alexjc/neural-enhance/releases/download/v0.3/ne1x-photo-deblur-0.3.pkl.bz2"
-RUN wget -q "https://github.com/alexjc/neural-enhance/releases/download/v0.3/ne1x-photo-repair-0.3.pkl.bz2"
-RUN wget -q "https://github.com/alexjc/neural-enhance/releases/download/v0.3/ne2x-photo-default-0.3.pkl.bz2"
-RUN wget -q "https://github.com/alexjc/neural-enhance/releases/download/v0.3/ne4x-photo-default-0.3.pkl.bz2"
+COPY ne1x-photo-deblur-0.3.pkl.bz2
+COPY ne1x-photo-repair-0.3.pkl.bz2
+COPY ne2x-photo-default-0.3.pkl.bz2
+COPY /ne4x-photo-default-0.3.pkl.bz2
+
+# RUN wget -q "https://github.com/alexjc/neural-enhance/releases/download/v0.3/ne1x-photo-deblur-0.3.pkl.bz2"
+# RUN wget -q "https://github.com/alexjc/neural-enhance/releases/download/v0.3/ne1x-photo-repair-0.3.pkl.bz2"
+# RUN wget -q "https://github.com/alexjc/neural-enhance/releases/download/v0.3/ne2x-photo-default-0.3.pkl.bz2"
+# RUN wget -q "https://github.com/alexjc/neural-enhance/releases/download/v0.3/ne4x-photo-default-0.3.pkl.bz2"
 
 # Set an entrypoint to the main enhance.py script
 ENTRYPOINT ["/opt/conda/bin/python3.6", "enhance.py", "--device=gpu"]
