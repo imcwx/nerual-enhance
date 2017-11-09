@@ -23,8 +23,10 @@ RUN /opt/conda/bin/python3.6 -m pip install -q -r "requirements.txt"
 
 # Copy only required project files
 COPY enhance.py .
-COPY test/* .
-COPY test_small/* . 
+RUN mkdir test
+COPY test/* test/
+RUN mkdir test_small
+COPY test_small/* test_small/ 
 
 # Get a pre-trained neural networks, non-commercial & attribution.
 RUN wget -q "https://github.com/alexjc/neural-enhance/releases/download/v0.3/ne1x-photo-deblur-0.3.pkl.bz2"
